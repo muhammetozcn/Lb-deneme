@@ -1,5 +1,7 @@
 import {inject} from '@loopback/core';
-import {get, Request, ResponseObject, RestBindings} from '@loopback/rest';
+import { juggler } from '@loopback/repository';
+import {get, post, Request, ResponseObject, RestBindings} from '@loopback/rest';
+import { PldbDataSource } from '../datasources';
 
 /**
  * OpenAPI response for ping()
@@ -43,6 +45,7 @@ export class PingController {
       },
     },
   })
+ 
   /*  @post('/todo', {
     responses: {
       '200': {
@@ -52,21 +55,26 @@ export class PingController {
     },
   })*/
   panda(): object {
+
+  
+  
     return {
-      merhaba: 'panda->object çalıştı',
+      data:PldbDataSource.dataSourceName,
+      merhaba: 'ali->object çalıştı',
       date: new Date(),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
     };
   }
-
+/*
   ping(): object {
     // Reply with a greeting, the current time, the url, and request headers
+  
     return {
       greeting: 'Hello from LoopBack',
       date: new Date(),
       url: this.req.url,
       headers: Object.assign({}, this.req.headers),
     };
-  }
+  }*/
 }

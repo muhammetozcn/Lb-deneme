@@ -1,5 +1,5 @@
 import {inject} from '@loopback/core';
-import { juggler } from '@loopback/repository';
+import { isFilter, juggler } from '@loopback/repository';
 import {get, post, Request, ResponseObject, RestBindings} from '@loopback/rest';
 import { PldbDataSource } from '../datasources';
 
@@ -55,11 +55,12 @@ export class PingController {
     },
   })*/
   panda(): object {
+    let conn=new PldbDataSource();
 
-  
   
     return {
       data:PldbDataSource.dataSourceName,
+      dataService:conn.connected,
       merhaba: 'ali->object çalıştı',
       date: new Date(),
       url: this.req.url,
